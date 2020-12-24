@@ -17,16 +17,19 @@ const SearchBox = ({ history }) => {
     const [keyword, setKeyword] = useState("");
     return (
         <Form onSubmit={submitHandler}>
-            <Form.Control
-                type="text"
-                name="q"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                placeholder="Search Products..."
-            ></Form.Control>
-            <Button type="submit" variant="outline-success" className="p-2">
-                Search
-            </Button>
+            <div style={{ display: "flex" }}>
+                <Form.Control
+                    type="text"
+                    name="q"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder="Search Products..."
+                ></Form.Control>
+
+                <Button type="submit" variant="outline-success" className="p-2">
+                    Search
+                </Button>
+            </div>
         </Form>
     );
 };
