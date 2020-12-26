@@ -70,7 +70,16 @@ const OrderScreen = ({ location, history, match }) => {
                 script.onload = () => {
                     setSdkReady(true);
                 };
-                document.body.appendChild(script);
+                let check = true;
+                document.querySelectorAll("script").forEach((scr) => {
+                    if (scr.hasAttribute("type")) {
+                        console.log("Found Paypal Script");
+                        check = false;
+                    }
+                });
+                if (check) {
+                    document.body.appendChild(script);
+                }
             };
 
             //dispatch(getOrderDetails(orderId));
