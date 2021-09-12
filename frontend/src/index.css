@@ -76,3 +76,12 @@ td {
     margin-left: auto;
     margin-right: auto;
 } */
+
+/* ZOOM ON HOVER FOR PRODUCTS */
+.product {
+    transition: transform 0.3s;
+}
+.product:hover {
+    transform: scale(1.1);
+    z-index: 999;
+}

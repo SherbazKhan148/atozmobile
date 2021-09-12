@@ -21,6 +21,10 @@ const orderSchema = mongoose.Schema(
                     type: String,
                     required: true,
                 },
+                s3Image: {
+                    type: String,
+                    required: true,
+                },
                 price: {
                     type: Number,
                     required: true,
@@ -60,10 +64,15 @@ const orderSchema = mongoose.Schema(
             required: true,
         },
         paymentResult: {
-            id: { type: String },
-            status: { type: String },
-            update_Time: { type: String },
-            email_address: { type: String },
+            paypalId: { type: String },
+            paypalStatus: { type: String },
+            paypalUpdateTime: { type: String },
+            paypalEmail: { type: String },
+
+            stripeTokenId: { type: String },
+            stripeCardId: { type: String },
+            stripeChargeId: { type: String },
+            stripeEmail: { type: String },
         },
         taxPrice: {
             type: Number,

@@ -13,6 +13,7 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 import Paginate from "../components/Paginate";
+import { Zoom } from "react-reveal";
 
 const ProductListScreen = ({ history, match }) => {
     const pageNumber = match.params.pageNumber || 1;
@@ -125,38 +126,40 @@ const ProductListScreen = ({ history, match }) => {
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {products.map((product) => (
-                                <tr key={product._id}>
-                                    <td>{product._id}</td>
-                                    <td>{product.name}</td>
-                                    <td>${product.price}</td>
-                                    <td>{product.category}</td>
-                                    <td>{product.brand}</td>
-                                    <td>
-                                        <LinkContainer
-                                            to={`/admin/product/${product._id}/edit`}
-                                        >
-                                            <Button
-                                                variant="light"
-                                                className="btn-sm"
+                        <Zoom left cascade>
+                            <tbody>
+                                {products.map((product) => (
+                                    <tr key={product._id}>
+                                        <td>{product._id}</td>
+                                        <td>{product.name}</td>
+                                        <td>Rs {product.price}</td>
+                                        <td>{product.category}</td>
+                                        <td>{product.brand}</td>
+                                        <td>
+                                            <LinkContainer
+                                                to={`/admin/product/${product._id}/edit`}
                                             >
-                                                <i className="fas fa-edit"></i>
+                                                <Button
+                                                    variant="light"
+                                                    className="btn-sm"
+                                                >
+                                                    <i className="fas fa-edit"></i>
+                                                </Button>
+                                            </LinkContainer>
+                                            <Button
+                                                variant="danger"
+                                                className="btn-sm"
+                                                onClick={() =>
+                                                    handleDelete(product._id)
+                                                }
+                                            >
+                                                <i className="fas fa-trash"></i>
                                             </Button>
-                                        </LinkContainer>
-                                        <Button
-                                            variant="danger"
-                                            className="btn-sm"
-                                            onClick={() =>
-                                                handleDelete(product._id)
-                                            }
-                                        >
-                                            <i className="fas fa-trash"></i>
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Zoom>
                     </Table>
                     <Paginate
                         pages={pages}

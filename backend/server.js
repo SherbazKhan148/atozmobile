@@ -33,6 +33,10 @@ app.get("/api/config/paypal", (req, res) => {
     res.json({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
 
+app.get("/api/config/stripe", (req, res) => {
+    res.json({ stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY });
+});
+
 const __dirname = path.resolve();
 app.use(
     "/uploads",

@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema(
         timestamps: true,
     }
 );
+// stripeCustomerId: {
+//     type: String,
+//     unique: true,
+// },
 
 //It will run before registering User
 userSchema.pre("save", async function (next) {

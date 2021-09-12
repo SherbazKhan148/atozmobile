@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getOrders } from "../actions/orderActions";
+import { Zoom } from "react-reveal";
 
 const OrderListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -38,69 +39,80 @@ const OrderListScreen = ({ history }) => {
                             <th>NAME</th>
                             <th>DATE</th>
                             <th>PRICE</th>
-                            <th>PAID</th>
+                            {/* <th>PAID</th> */}
                             <th>DELIVERED</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {orders &&
-                            orders.map((order) => (
-                                <tr key={order._id}>
-                                    <td>{order._id}</td>
-                                    <td>{order.user && order.user.name}</td>
-                                    <td>{order.createdAt.substring(0, 10)}</td>
-                                    <td>${order.totalPrice}</td>
-                                    <td>
-                                        {order.isPaid ? (
-                                            <span>
+                    <Zoom left cascade>
+                        <tbody>
+                            {orders &&
+                                orders.map((order) => (
+                                    <tr key={order._id}>
+                                        <td>{order._id}</td>
+                                        <td>{order.user && order.user.name}</td>
+                                        <td>
+                                            {order.createdAt.substring(0, 10)}
+                                        </td>
+                                        <td>Rs {order.totalPrice}</td>
+                                        {/* <td>
+                                            {order.isPaid ? (
+                                                <span>
+                                                    <i
+                                                        className="fas fa-check"
+                                                        style={{
+                                                            color: "green",
+                                                        }}
+                                                    ></i>{" "}
+                                                    {order.paidAt.substring(
+                                                        0,
+                                                        10
+                                                    )}
+                                                </span>
+                                            ) : (
                                                 <i
-                                                    className="fas fa-check"
-                                                    style={{ color: "green" }}
-                                                ></i>{" "}
-                                                {order.paidAt.substring(0, 10)}
-                                            </span>
-                                        ) : (
-                                            <i
-                                                className="fas fa-times"
-                                                style={{ color: "red" }}
-                                            ></i>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {order.isDelivered ? (
-                                            <span>
+                                                    className="fas fa-times"
+                                                    style={{ color: "red" }}
+                                                ></i>
+                                            )}
+                                        </td> */}
+                                        <td>
+                                            {order.isDelivered ? (
+                                                <span>
+                                                    <i
+                                                        className="fas fa-check"
+                                                        style={{
+                                                            color: "green",
+                                                        }}
+                                                    ></i>{" "}
+                                                    {order.deliveredAt.substring(
+                                                        0,
+                                                        10
+                                                    )}
+                                                </span>
+                                            ) : (
                                                 <i
-                                                    className="fas fa-check"
-                                                    style={{ color: "green" }}
-                                                ></i>{" "}
-                                                {order.deliveredAt.substring(
-                                                    0,
-                                                    10
-                                                )}
-                                            </span>
-                                        ) : (
-                                            <i
-                                                className="fas fa-times"
-                                                style={{ color: "red" }}
-                                            ></i>
-                                        )}
-                                    </td>
-                                    <td>
-                                        <LinkContainer
-                                            to={`/order/${order._id}`}
-                                        >
-                                            <Button
-                                                variant="light"
-                                                className="btn-sm"
+                                                    className="fas fa-times"
+                                                    style={{ color: "red" }}
+                                                ></i>
+                                            )}
+                                        </td>
+                                        <td>
+                                            <LinkContainer
+                                                to={`/order/${order._id}`}
                                             >
-                                                Details
-                                            </Button>
-                                        </LinkContainer>
-                                    </td>
-                                </tr>
-                            ))}
-                    </tbody>
+                                                <Button
+                                                    variant="light"
+                                                    className="btn-sm"
+                                                >
+                                                    Details
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                    </Zoom>
                 </Table>
             )}
         </>

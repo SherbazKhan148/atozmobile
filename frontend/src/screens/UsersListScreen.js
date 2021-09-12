@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import { deleteUser, listUsers } from "../actions/userActions";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { Zoom } from "react-reveal";
 
 const UsersListScreen = ({ history }) => {
     const dispatch = useDispatch();
@@ -64,51 +65,55 @@ const UsersListScreen = ({ history }) => {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {users.map((user) => (
-                            <tr key={user._id}>
-                                <td>{user._id}</td>
-                                <td>{user.name}</td>
-                                <td>
-                                    <a href={`mailto:${user.email}`}>
-                                        {user.email}
-                                    </a>
-                                </td>
-                                <td>
-                                    {user.isAdmin ? (
-                                        <i
-                                            className="fas fa-check"
-                                            style={{ color: "green" }}
-                                        ></i>
-                                    ) : (
-                                        <i
-                                            className="fas fa-times"
-                                            style={{ color: "red" }}
-                                        ></i>
-                                    )}
-                                </td>
-                                <td>
-                                    <LinkContainer
-                                        to={`/admin/user/${user._id}/edit`}
-                                    >
-                                        <Button
-                                            variant="light"
-                                            className="btn-sm"
+                    <Zoom left cascade>
+                        <tbody>
+                            {users.map((user) => (
+                                <tr key={user._id}>
+                                    <td>{user._id}</td>
+                                    <td>{user.name}</td>
+                                    <td>
+                                        <a href={`mailto:${user.email}`}>
+                                            {user.email}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {user.isAdmin ? (
+                                            <i
+                                                className="fas fa-check"
+                                                style={{ color: "green" }}
+                                            ></i>
+                                        ) : (
+                                            <i
+                                                className="fas fa-times"
+                                                style={{ color: "red" }}
+                                            ></i>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <LinkContainer
+                                            to={`/admin/user/${user._id}/edit`}
                                         >
-                                            <i className="fas fa-edit"></i>
+                                            <Button
+                                                variant="light"
+                                                className="btn-sm"
+                                            >
+                                                <i className="fas fa-edit"></i>
+                                            </Button>
+                                        </LinkContainer>
+                                        <Button
+                                            variant="danger"
+                                            className="btn-sm"
+                                            onClick={() =>
+                                                handleDelete(user._id)
+                                            }
+                                        >
+                                            <i className="fas fa-trash"></i>
                                         </Button>
-                                    </LinkContainer>
-                                    <Button
-                                        variant="danger"
-                                        className="btn-sm"
-                                        onClick={() => handleDelete(user._id)}
-                                    >
-                                        <i className="fas fa-trash"></i>
-                                    </Button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Zoom>
                 </Table>
             )}
         </>

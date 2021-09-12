@@ -13,7 +13,6 @@ export const cartReducer = (
     switch (action.type) {
         case CART_ADD_ITEM:
             const item = action.payload;
-
             let existedItem = state.cartItems.find(
                 (x) => x.product === item.product
             );

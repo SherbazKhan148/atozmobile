@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
 import { Link } from "react-router-dom";
+import { Zoom } from "react-reveal";
 
 const HomeScreen = ({ match }) => {
     const keyword = match.params.keyword;
@@ -25,7 +26,9 @@ const HomeScreen = ({ match }) => {
     return (
         <>
             {!keyword ? (
-                <ProductCarousel />
+                <Zoom>
+                    <ProductCarousel />
+                </Zoom>
             ) : (
                 <Link to="/">
                     <button className="btn btn-dark">Clear Search</button>
@@ -40,7 +43,14 @@ const HomeScreen = ({ match }) => {
                 <>
                     <Row>
                         {products.map((product) => (
-                            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                            <Col
+                                className="product"
+                                key={product._id}
+                                sm={12}
+                                md={6}
+                                lg={4}
+                                xl={3}
+                            >
                                 <Product product={product} />
                             </Col>
                         ))}
